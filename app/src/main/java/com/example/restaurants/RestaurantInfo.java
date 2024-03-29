@@ -2,8 +2,6 @@ package com.example.restaurants;
 
 public class RestaurantInfo {
     private String name;
-
-
     private String desc;
     private String loc;
     private String rating;
