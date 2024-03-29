@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_location"
             android:id="@+id/etLocation"
-            android:inputType="textShortMessage"
+            android:inputType="textPersonName"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +58,7 @@
             android:hint="@string/enter_phone_number"
             android:id="@+id/etPhone"
             android:inputType="phone"
-            />
+            android:maxLength="11"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Description-->
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/add_description"
             android:id="@+id/etDescription"
-            android:inputType="textLongMessage"
+            android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <!-- Rating-->
@@ -90,8 +90,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_current_rating"
             android:id="@+id/etRating"
-            android:inputType="numberDecimal"
-            />
+            android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Btn Exit and Add -->

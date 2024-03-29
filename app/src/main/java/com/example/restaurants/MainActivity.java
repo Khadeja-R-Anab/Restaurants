@@ -9,8 +9,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter myAdapter, filteredAdapter;
     Button btnAddNew;
     EditText etSearch;
+    TextView tvNoResults;
     ArrayList<RestaurantInfo> list;
     ArrayList<RestaurantInfo> filteredList;
 
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if the search text is empty or null
         if (searchText == null || searchText.isEmpty()) {
             rvList.setAdapter(myAdapter);
+            tvNoResults.setVisibility(View.GONE); // Hide the TextView
         } else {
             // Filter restaurants based on search text
             for (RestaurantInfo restaurant : list) {
@@ -144,11 +148,19 @@ public class MainActivity extends AppCompatActivity {
                     filteredList.add(restaurant);
                 }
             }
-            storeFilteredList(filteredList);
-            retrieveAndSortFilteredData();
-            rvList.setAdapter(filteredAdapter);
+
+            if (filteredList.isEmpty()) {
+                tvNoResults.setVisibility(View.VISIBLE); // Show the TextView
+                rvList.setAdapter(null); // Clear RecyclerView adapter
+            } else {
+                tvNoResults.setVisibility(View.GONE); // Hide the TextView
+                storeFilteredList(filteredList);
+                retrieveAndSortFilteredData();
+                rvList.setAdapter(filteredAdapter);
+            }
         }
     }
+
 
     // Method to retrieve restaurant data from SharedPreferences and sort by rating
     private void retrieveAndSortRestaurantData() {
@@ -191,5 +203,6 @@ public class MainActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.etSearch);
         rvList = findViewById(R.id.rvList);
         btnAddNew = findViewById(R.id.btnAddNewRestaurant);
+        tvNoResults = findViewById(R.id.tvNoResults);
     }
 }

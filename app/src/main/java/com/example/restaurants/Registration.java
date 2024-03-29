@@ -40,14 +40,31 @@ public class Registration extends AppCompatActivity {
         // Method to handle saving restaurant information
         btnAdd.setOnClickListener(v -> {
             // Capture restaurant information from UI
-            RestaurantInfo restaurant = new RestaurantInfo();
-            restaurant.setName(tvName.getText().toString());
-            restaurant.setDesc(tvDescription.getText().toString());
-            restaurant.setPhone(tvPhone.getText().toString());
-            restaurant.setLoc(tvLocation.getText().toString());
-            restaurant.setRating(tvRating.getText().toString());
+            String name = tvName.getText().toString();
+            String desc = tvDescription.getText().toString();
+            String phone = tvPhone.getText().toString();
+            String loc = tvLocation.getText().toString();
+            String ratingStr = tvRating.getText().toString();
+
+            if (name.isEmpty() || desc.isEmpty() || phone.isEmpty() || loc.isEmpty() || ratingStr.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Check if the rating is within the valid range (0.0 to 5.0)
+            float rating = Float.parseFloat(ratingStr);
+            if (rating < 0.0 || rating > 5.0) {
+                Toast.makeText(this, "Rating must be between 0.0 and 5.0", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             // Save restaurant information
+            RestaurantInfo restaurant = new RestaurantInfo();
+            restaurant.setName(name);
+            restaurant.setDesc(desc);
+            restaurant.setPhone(phone);
+            restaurant.setLoc(loc);
+            restaurant.setRating(ratingStr);
             saveRestaurantInfo(restaurant);
 
             Toast.makeText(this, "Added Successfully", Toast.LENGTH_SHORT).show();
@@ -57,6 +74,7 @@ public class Registration extends AppCompatActivity {
             startActivity(intent);
             finish(); // Finish current activity to prevent going back to it from MainActivity
         });
+
 
         btnCancel.setOnClickListener(v -> {
             Toast.makeText(this, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();

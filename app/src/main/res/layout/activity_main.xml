@@ -55,5 +55,18 @@
             android:id="@+id/rvList"
             />
 
+        <TextView
+            android:id="@+id/tvNoResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/no_results_found"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:visibility="gone" />
+
     </LinearLayout>
 </LinearLayout>
