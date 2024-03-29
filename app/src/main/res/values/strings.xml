@@ -7,4 +7,13 @@
     <string name="phone">Phone</string>
     <string name="description">Description</string>
     <string name="todo">TODO</string>
+    <string name="search_button">Search Button</string>
+    <string name="add_new_restaurant">Add New Restaurant</string>
+    <string name="enter_restaurant_name">Enter Restaurant Name</string>
+    <string name="enter_location">Enter Location</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="add_description">Add Description</string>
+    <string name="enter_current_rating">Enter Current Rating</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
 </resources>

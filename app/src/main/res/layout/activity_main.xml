@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,28 +20,31 @@
             android:background="#F44336"
             android:padding="15dp">
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:src="@drawable/search_24px"
+                android:backgroundTint="#F44336"
+                android:id="@+id/btnSearch"
+                android:padding="5dp"
+                android:contentDescription="@string/search_button" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="0dp"
                 android:layout_weight="9"
                 android:layout_height="wrap_content"
                 android:hint="@string/search_a_restaurant"
                 android:id="@+id/etSearch"
-                android:inputType="textPersonName"/>
-
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="match_parent"
-                android:src="@drawable/search_24px"
-                android:backgroundTint="#F44336"
-                android:id="@+id/btnSearch"/>
+                android:inputType="textPersonName"
+                android:textColorHint="#393838"/>
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Add New Restaurant"
+            android:text="@string/add_new_restaurant"
             android:id="@+id/btnAddNewRestaurant"
             app:cornerRadius="4dp"
             android:backgroundTint="#673AB7"/>

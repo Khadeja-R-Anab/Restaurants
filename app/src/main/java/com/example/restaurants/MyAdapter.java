@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
@@ -46,20 +45,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return restaurants.size();
     }
 
-    public void sortListByRatingDescending() {
-        Collections.sort(restaurants, (restaurant1, restaurant2) -> {
-            // Convert string ratings to floats for comparison
-            float rating1 = Float.parseFloat(restaurant1.getRating());
-            float rating2 = Float.parseFloat(restaurant2.getRating());
-            // Sort in descending order
-            return Float.compare(rating2, rating1);
-        });
-        notifyDataSetChanged(); // Notify adapter that data has changed
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView tvRating, tvName, tvCount, tvDescription, tvLocation, tvPhone;
+        TextView tvRating, tvName, tvDescription, tvLocation, tvPhone;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPhone = itemView.findViewById(R.id.tvPhone);
@@ -67,13 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             tvRating = itemView.findViewById(R.id.tvRating);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvName = itemView.findViewById(R.id.tvName);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), tvName.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

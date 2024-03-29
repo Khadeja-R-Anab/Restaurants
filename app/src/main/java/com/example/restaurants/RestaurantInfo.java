@@ -6,17 +6,8 @@ public class RestaurantInfo {
     private String loc;
     private String rating;
     private String phone;
-    private int count;
 
     public RestaurantInfo() {
-    }
-
-    public RestaurantInfo(String name, String desc, String loc, String phone, String rating) {
-        this.name = name;
-        this.desc = desc;
-        this.loc = loc;
-        this.phone = phone;
-        this.rating = rating;
     }
 
     public String getDesc() {
@@ -50,7 +41,6 @@ public class RestaurantInfo {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 
     public String getName() {
         return name;
