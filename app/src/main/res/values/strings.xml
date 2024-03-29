@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Restaurants</string>
+    <string name="search_a_restaurant">Search a Restaurant</string>
+    <string name="rating">Rating</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="location">Location</string>
+    <string name="phone">Phone</string>
+    <string name="description">Description</string>
+    <string name="todo">TODO</string>
 </resources>

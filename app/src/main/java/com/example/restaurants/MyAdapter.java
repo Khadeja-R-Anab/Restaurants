@@ -1,5 +1,6 @@
 package com.example.restaurants;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,51 +11,67 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    ArrayList<RestaurantInfo> chats;
+    ArrayList<RestaurantInfo> restaurants;
     public MyAdapter(ArrayList<RestaurantInfo> list)
     {
-        chats = list;
+        restaurants = list;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int restaurants) {
         View v = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.single_item, parent, false);
         return new ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvName.setText(chats.get(position).getName());
-        holder.tvMsg.setText(chats.get(position).getMsg());
-        holder.tvCount.setText(chats.get(position).getCount()+"");
-        holder.tvTime.setText(chats.get(position).getTime());
+        holder.tvName.setText(restaurants.get(position).getName());
+        holder.tvRating.setText(restaurants.get(position).getRating());
+        holder.tvDescription.setText(restaurants.get(position).getDesc());
+        holder.tvLocation.setText(restaurants.get(position).getLoc());
+        holder.tvPhone.setText(restaurants.get(position).getPhone());
     }
 
     @Override
     public int getItemCount() {
-        return chats.size();
+        return restaurants.size();
+    }
+
+    public void sortListByRatingDescending() {
+        Collections.sort(restaurants, (restaurant1, restaurant2) -> {
+            // Convert string ratings to floats for comparison
+            float rating1 = Float.parseFloat(restaurant1.getRating());
+            float rating2 = Float.parseFloat(restaurant2.getRating());
+            // Sort in descending order
+            return Float.compare(rating2, rating1);
+        });
+        notifyDataSetChanged(); // Notify adapter that data has changed
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView tvMsg, tvName, tvCount, tvTime;
+        TextView tvRating, tvName, tvCount, tvDescription, tvLocation, tvPhone;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvMsg = itemView.findViewById(R.id.tvLastMsg);
-            tvTime = itemView.findViewById(R.id.tvTime);
-            tvName = itemView.findViewById(R.id.tvContactName);
-            tvCount = itemView.findViewById(R.id.tvMsgCount);
+            tvPhone = itemView.findViewById(R.id.tvPhone);
+            tvLocation = itemView.findViewById(R.id.tvLocation);
+            tvRating = itemView.findViewById(R.id.tvRating);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvName = itemView.findViewById(R.id.tvName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), tvTime.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), tvName.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
